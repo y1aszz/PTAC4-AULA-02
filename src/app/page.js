@@ -4,7 +4,12 @@ import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
 
 export default function Home() {
-
+  const { push, refresh } = useRouter();
+  const handlerGenerationToken = () => {
+    Cookies.set('token', 'ceceeecwfewcewe');
+    push('/pages/private');
+    refresh();
+  };
 
   return (
     <div>

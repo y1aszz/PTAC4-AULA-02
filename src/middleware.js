@@ -1,14 +1,16 @@
 import { NextResponse } from "next/server";
 
-export default function middleware(Resquest) {
-    const token = Resquest.cookies.get('token');
-    const urlHome = new URL('/', Resquest.url);
+export default function middleware(request) {
+    const token = request.cookies.get('token');
+    const urlLogin = new URL('/pages/login', request.url);
 
     if (!token) {
-        if (Resquest.nextUrl.pathname === '/pages/private') {
-            return NextResponse.redirect(urlHome);
-        }
+        if (request.nextUrl.pathname === '/pages/private') {
+            return NextResponse.redirect(urlLogin);
+          }
+        
     }
+    NextResponse.next();
 };
 
 export const config = {
