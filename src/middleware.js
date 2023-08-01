@@ -8,7 +8,6 @@ export default function middleware(request) {
         if (request.nextUrl.pathname === '/pages/private') {
             return NextResponse.redirect(urlLogin);
           }
-        
     }
     NextResponse.next();
 };
