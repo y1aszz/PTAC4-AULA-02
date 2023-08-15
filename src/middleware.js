@@ -1,21 +1,19 @@
-'use sever'
-
 import { NextResponse } from "next/server";
-import { validateToken } from "./app/functions/validateToken";
-export const middleware = (request) => {
-    const token = request.cookies.get('token')?.value;
-    const urlLogin = new URL('/',request.url);
 
-    const isTokenValidated = validateToken(token);
+export default function middleware(request) {
+    const token = request.cookies.get('token');
+    const urlLogin = new URL('/pages/login', request.url);
 
-    if(!isTokenValidated || !token){
-        if(request.nextUrl.pathname==='/pages/dashboard'){
+    if (!token) {
+        if (request.nextUrl.pathname === '/pages/private') {
             return NextResponse.redirect(urlLogin);
-        }
+          }
     }
     NextResponse.next();
 };
+
 export const config = {
-    matcher: ['/', '/pages/dashboard']
+    matcher: ["/", "/pages/private"]
 };
+
 
