@@ -1,5 +1,5 @@
 export default function Register() {
     return (
-        <h1>Registro</h1>
+        <h1>Registro especial</h1>
     );
 };
